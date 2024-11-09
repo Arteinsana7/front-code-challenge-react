@@ -1,6 +1,6 @@
 # front-code-challenge
 
-This is the Valtech Front challenge
+This is the Valtech Front challenge forked By Eliana Yepez, seeking an internship with your amazing company !
 
 ## Getting Started
 

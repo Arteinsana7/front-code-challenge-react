@@ -1,22 +1,19 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+'use client';  // This is crucial if any logic should run on the client
 
-export const metadata: Metadata = {
-  title: "Valtech Front Challenge",
-  description: "Valtech react front challenge",
-};
+import { ThemeProvider } from '@mui/material/styles'; // ThemeProvider from MUI
+import theme from '../theme'; // Custom theme
+import './globals.css'; // Import global styles 
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head />
+      <body>
+        <ThemeProvider theme={theme}>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
