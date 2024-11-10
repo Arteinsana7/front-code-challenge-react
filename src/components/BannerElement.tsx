@@ -20,6 +20,7 @@ const BannerElement = () => {
   return (
     <Container
       sx={{
+        width: '100%',
         maxWidth: '1196px', // This keeps the fixed width for the outer container
         height: '480px', // This keeps the fixed height for the outer container
         padding: theme.spacing(2),
@@ -29,18 +30,18 @@ const BannerElement = () => {
         alignItems: 'center', // Center content horizontally
         margin: '0 auto', // Center horizontally within the viewport
         backgroundColor: theme.palette.background.default,
-        // Responsiveness: adjusts margin based on screen size
-        marginTop: {
+        // Only adjust left and right margins, no top and bottom margins
+        marginLeft: {
           xs: '24px', // Smaller margin on extra small screens
           sm: '48px', // Medium margin on small screens
           md: '80px', // Larger margin on medium screens
-          lg: '120px', // Full margin on large screens and up
+          lg: '120px', // 120px margin on large screens
         },
-        marginBottom: {
+        marginRight: {
           xs: '24px', // Smaller margin on extra small screens
           sm: '48px', // Medium margin on small screens
           md: '80px', // Larger margin on medium screens
-          lg: '120px', // Full margin on large screens and up
+          lg: '120px', // 120px margin on large screens
         },
       }}
     >
@@ -82,7 +83,7 @@ const BannerElement = () => {
               lg: '36px',
             },
             lineHeight: '120%',
-            textAlign: 'right', 
+            textAlign: 'right', // Align the text to the right
           }}
         >
           {heroData.title}
@@ -101,7 +102,7 @@ const BannerElement = () => {
             color: theme.palette.text.secondary,
             fontFamily: "'Arial', sans-serif",
             lineHeight: '120%',
-            textAlign: 'right', 
+            textAlign: 'right', // Align the text to the right
           }}
         >
           {description}

@@ -16,6 +16,7 @@
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
     "@mui/material-nextjs": "^6.1.6",
+    "bento-grid": "^0.1.1",
     "framer-motion": "^11.11.11",
     "next": "14.2.5",
     "react": "^18",
