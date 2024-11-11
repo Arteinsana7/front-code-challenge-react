@@ -7,7 +7,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["@chakra-ui/react"], 
     "allowJs": true,
     "sourceMap": true,
     "jsx": "preserve",
@@ -22,6 +21,12 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+   "src/types/**/*.d.ts"   // Make sure this line includes your custom types
+  ],
   "exclude": ["node_modules"]
 }

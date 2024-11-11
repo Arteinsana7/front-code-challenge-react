@@ -1,23 +1,28 @@
+// theme.ts
 import { createTheme } from '@mui/material/styles';
 
-// Define your custom theme
+// Create the theme with the custom color
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FF5959', // Orange color for the banner
+      main: '#FF5959', // Default primary color (if needed)
     },
     background: {
-      default: '#F3F2EF', // Light gray background
+      default: '#F3F2EF', // Background color
     },
     text: {
-      primary: '#171717', // Black text
-      secondary: '#4C4C49', // Dark grey text
+      primary: '#171717', // Text color
+      secondary: '#4C4C49', // Text color
+    },
+    // Add your custom color to the theme's palette
+    customColor: {
+      main: '#D1D3CA', // Your custom color
     },
   },
   typography: {
     fontFamily: 'Arial, sans-serif', // Default font for the app
     h1: {
-      fontFamily: 'Arial, sans-serif', 
+      fontFamily: 'Arial, sans-serif',
       fontSize: '48px',
       fontWeight: 'bold',
     },
@@ -44,7 +49,7 @@ const theme = createTheme({
       fontWeight: 'bold',
     },
   },
-  spacing: (factor: number) => `${factor * 8}px`, // Example: spacing(1) = 8px
+  spacing: (factor: number) => `${factor * 8}px`,
 });
 
 export default theme;

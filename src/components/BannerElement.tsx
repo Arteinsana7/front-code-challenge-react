@@ -101,7 +101,7 @@ const BannerElement = () => {
             },
             color: theme.palette.text.secondary,
             fontFamily: "'Arial', sans-serif",
-            lineHeight: '120%',
+            lineHeight: '140%',
             textAlign: 'right', // Align the text to the right
           }}
         >

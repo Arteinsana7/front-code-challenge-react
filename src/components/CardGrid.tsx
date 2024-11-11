@@ -1,149 +1,121 @@
 "use client";
 import React from 'react';
-import { Card, Typography, Grid } from '@mui/material';
-import data from '../data/index.json'; // Importation des données depuis le fichier JSON
+import { Card, Typography, Grid, CardMedia, CardContent, useTheme } from '@mui/material';
+import data from '../data/index.json'; // Using your provided data.json structure
 
 function CardGrid() {
-  // Access data from the JSON file
-  const { content } = data;
-  const heroData = content[0]; // Assuming the first object contains hero data
+  const theme = useTheme(); // Access the theme to use the custom color
+
+  // Find the CARD_GRID object in the content array
+  const cardGridData = data.content.find((section) => section.type === 'CARD_GRID');
+
+  if (!cardGridData || !cardGridData.cards) {
+    return (
+      <Typography variant="h6" sx={{ textAlign: 'center', marginTop: '20px' }}>
+        No card data available
+      </Typography>
+    );
+  }
 
   return (
     <Grid
       container
       spacing={2}
       sx={{
-        width: '100%', // Making the container take full width
-        maxWidth: '1196px', // Optional: if you want to keep a max width
-        margin: '0 auto', // Center horizontally
-        flexDirection: 'column', // Stack the content vertically
-        gap: '20px', // Vertical gap between elements
-        paddingLeft: { xs: 0, sm: '20px', md: '20px' }, // Padding for small and medium devices
-        paddingRight: { xs: 0, sm: '20px', md: '20px' }, // Padding for small and medium devices
+        width: '100%',
+        maxWidth: '1196px',
+        margin: '0 auto',
+        flexDirection: 'column',
+        gap: '20px',
+        paddingLeft: { xs: 0, sm: '20px', md: '20px' },
+        paddingRight: { xs: 0, sm: '20px', md: '20px' },
       }}
     >
-      {/* Text container from index.json */}
+      {/* Title section */}
       <Grid item xs={12}>
-        <Grid
-          container
-          justifyContent="center"
-          sx={{
-            marginBottom: '20px', // Space between text and the first row of cards
-          }}
-        >
+        <Grid container justifyContent="center" sx={{ marginBottom: '20px' }}>
           <Typography
             variant="body1"
-            sx={{
-              color: 'black',
-              textAlign: 'center',
-              fontSize: '16px',
-              fontWeight: 'bold',
-            }}
+            sx={{ color: 'black', textAlign: 'center', fontSize: '16px', fontWeight: 'bold' }}
           >
-            {heroData.title} {/* Assuming 'heroData.title' is the title field */}
+            {cardGridData.title}
           </Typography>
         </Grid>
       </Grid>
 
       {/* Grid containing the cards */}
       <Grid container spacing={2}>
-        {/* First row of cards */}
-        <Grid item xs={12} sm={8} md={6}>
-          <Card
-            sx={{
-              backgroundColor: '#cce4f7',
-              padding: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '479px', // Fixed height for the card
-              borderRadius: 0,
-            }}
+        {cardGridData.cards.slice(0, 6).map((card, index) => (
+          <Grid
+            key={index}
+            item
+            xs={12}
+            sm={index === 0 || index === 5 ? 8 : 4}
+            md={index === 0 || index === 5 ? 6 : 3}
           >
-            <Typography variant="h6">Card 1</Typography>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={4} md={3}>
-          <Card
-            sx={{
-              backgroundColor: '#cce4f7',
-              padding: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '479px',
-              borderRadius: 0,
-            }}
-          >
-            <Typography variant="h6">Card 2</Typography>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={4} md={3}>
-          <Card
-            sx={{
-              backgroundColor: '#cce4f7',
-              padding: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '479px',
-              borderRadius: 0,
-            }}
-          >
-            <Typography variant="h6">Card 3</Typography>
-          </Card>
-        </Grid>
-
-        {/* Second row of cards */}
-        <Grid item xs={12} sm={4} md={3}>
-          <Card
-            sx={{
-              backgroundColor: '#cce4f7',
-              padding: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '479px',
-              borderRadius: 0,
-            }}
-          >
-            <Typography variant="h6">Card 4</Typography>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={4} md={3}>
-          <Card
-            sx={{
-              backgroundColor: '#cce4f7',
-              padding: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '479px',
-              borderRadius: 0,
-            }}
-          >
-            <Typography variant="h6">Card 5</Typography>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={8} md={6}>
-          <Card
-            sx={{
-              backgroundColor: '#cce4f7',
-              padding: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '479px',
-              borderRadius: 0,
-            }}
-          >
-            <Typography variant="h6">Card 6</Typography>
-          </Card>
-        </Grid>
+            <Card
+              sx={{
+                backgroundColor: theme.palette.customColor.main, // Use custom color here
+                padding: 2,
+                height: '479px',
+                borderRadius: 0,
+                position: 'relative', // Allow absolute positioning of text
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                textAlign: 'center', // Center text horizontally
+              }}
+            >
+              {/* CardMedia (image) */}
+              <CardMedia
+                component="img"
+                height="100%" // Make the image take the full height of the card
+                image={card.backgroundAsset.url}
+                alt={card.backgroundAsset.alt}
+                sx={{
+                  objectFit: 'cover', // Ensure the image covers the entire space without distortion
+                  width: '100%', // Ensure the image takes up full width
+                }}
+              />
+              
+              {/* Card content (text) */}
+              <CardContent sx={{
+                position: 'absolute', // Position the text on top of the image
+                top: '50%', // Center the text vertically
+                left: '50%', // Center the text horizontally
+                transform: 'translate(-50%, -50%)', // Use translate to truly center the text
+                padding: 0,
+                zIndex: 10, // Make sure the text is on top of the image
+              }}>
+                {/* Render subtitle and title in uppercase */}
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 'normal',
+                    textTransform: 'uppercase',
+                    marginBottom: '10px',
+                    textAlign: 'center', // Center the text horizontally
+                    color: 'black', // Set text color to black
+                  }}
+                >
+                  {card.subtitle}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    textAlign: 'center', // Center the text horizontally
+                    color: 'black', // Set text color to black
+                  }}
+                >
+                  {card.title}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );
