@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, Typography, Grid, CardMedia, CardContent, useTheme } from '@mui/material';
 import data from '../data/index.json'; // Using your provided data.json structure
+import ButtonDetail from './ButtonDetail'; // Import ButtonDetail component
 
 function CardGrid() {
   const theme = useTheme(); // Access the theme to use the custom color
@@ -77,16 +78,23 @@ function CardGrid() {
                   width: '100%', // Ensure the image takes up full width
                 }}
               />
-              
-              {/* Card content (text) */}
-              <CardContent sx={{
-                position: 'absolute', // Position the text on top of the image
-                top: '50%', // Center the text vertically
-                left: '50%', // Center the text horizontally
-                transform: 'translate(-50%, -50%)', // Use translate to truly center the text
-                padding: 0,
-                zIndex: 10, // Make sure the text is on top of the image
-              }}>
+
+              {/* Create a second container inside the card to hold text and button */}
+              <CardContent
+                sx={{
+                  position: 'absolute', // Position the text on top of the image
+                  top: '50%', // Center the text vertically
+                  left: '50%', // Center the text horizontally
+                  transform: 'translate(-50%, -50%)', // Use translate to truly center the text
+                  padding: 0,
+                  zIndex: 10, // Make sure the text is on top of the image
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center', // Center everything inside this container
+                  gap: '20px', // Spacing between the text and button
+                }}
+              >
                 {/* Render subtitle and title in uppercase */}
                 <Typography
                   variant="subtitle1"
@@ -112,6 +120,14 @@ function CardGrid() {
                 >
                   {card.title}
                 </Typography>
+
+                {/* Conditionally render ButtonDetail only for the first card */}
+                {index === 0 && (
+                  <ButtonDetail
+                    text={card.cta?.text || 'Explore More'} // Pass dynamic text from JSON
+                    url={card.cta?.url || '/article'} // Pass dynamic URL from JSON
+                  />
+                )}
               </CardContent>
             </Card>
           </Grid>
