@@ -1,19 +1,22 @@
 import React from 'react';
-import { Button, Typography, useTheme } from '@mui/material';
+import { Button, Typography, useTheme, SxProps, Theme } from '@mui/material';
 import Link from 'next/link';
 
 interface ButtonDetailProps {
   text: string;
   url: string;
+  ariaLabel?: string; // Add ariaLabel as an optional prop
+  sx?: SxProps<Theme>; // Keep sx prop for additional styling
 }
 
-const ButtonDetail: React.FC<ButtonDetailProps> = ({ text, url }) => {
+const ButtonDetail: React.FC<ButtonDetailProps> = ({ text, url, ariaLabel, sx }) => {
   const theme = useTheme(); // Access the theme for colors
 
   return (
     // Make sure the Link has no underline and matches the primary color
     <Link href={url} passHref>
       <Button
+        aria-label={ariaLabel} // Use the ariaLabel here for accessibility
         sx={{
           width: '225px', // Button width
           height: '50px', // Button height
@@ -34,6 +37,7 @@ const ButtonDetail: React.FC<ButtonDetailProps> = ({ text, url }) => {
             textDecoration: 'none', // Remove underline from the <a> tag
             color: 'inherit', // Ensure the link text color matches the parent color
           },
+          ...sx, // Apply the sx prop passed from the parent component
         }}
       >
         <Typography

@@ -1,0 +1,70 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  height: 479px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Padding around the main card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.textContainer {
+  position: absolute;
+  top: 50%; /* Start at the middle */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -30%); /* Start a little more down */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Padding inside the container */
+  transition: transform 0.3s ease;
+  width: 100%; /* Ensure the container takes the full width of the card */
+}
+
+.card:hover .textContainer {
+  transform: translate(-50%, -50%); /* Move to the exact center */
+}
+
+.titleSubtitleContainer {
+  margin-bottom: 15px; /* Space between title/subtitle and description */
+}
+
+.title, .subtitle {
+  font-size: 18px; /* Reduce font size for better fitting */
+  word-wrap: break-word; /* Ensure text wraps inside container */
+  max-width: 100%; /* Ensure text does not overflow */
+}
+
+.descriptionContainer {
+  width: 100%; /* Adapt to the card's width */
+  max-width: 100%; /* Ensure it fills the width */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(5px); /* Initial offset for animation */
+  margin-bottom: 10px; /* Space between description and button */
+  padding: 20px; /* Padding around the description */
+  font-size: 14px; /* Adjust text size for the description */
+  word-wrap: break-word; /* Ensure description text wraps within container */
+}
+
+.buttonContainer {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(5px); /* Initial offset for animation */
+  margin-top: 10px; /* Space between description and button */
+  padding: 5px; /* 5px padding around the button */
+}
+
+.card:hover .descriptionContainer,
+.card:hover .buttonContainer {
+  opacity: 1;
+  transform: translateY(0); /* Bring up smoothly */
+}

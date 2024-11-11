@@ -1,13 +1,12 @@
-"use client";
 import React from 'react';
 import { Card, Typography, Grid, CardMedia, CardContent, useTheme } from '@mui/material';
-import data from '../data/index.json'; // Using your provided data.json structure
-import ButtonDetail from './ButtonDetail'; // Import ButtonDetail component
+import data from '../data/index.json'; // Import JSON data
+import ButtonDetail from './ButtonDetail'; // Assuming ButtonDetail is in the same folder
+import styles from 'src/app/CardGrid.module.css'; // Import the CSS module
 
-function CardGrid() {
-  const theme = useTheme(); // Access the theme to use the custom color
+const CardGrid: React.FC = () => {
+  const theme = useTheme();
 
-  // Find the CARD_GRID object in the content array
   const cardGridData = data.content.find((section) => section.type === 'CARD_GRID');
 
   if (!cardGridData || !cardGridData.cards) {
@@ -32,7 +31,6 @@ function CardGrid() {
         paddingRight: { xs: 0, sm: '20px', md: '20px' },
       }}
     >
-      {/* Title section */}
       <Grid item xs={12}>
         <Grid container justifyContent="center" sx={{ marginBottom: '20px' }}>
           <Typography
@@ -44,7 +42,6 @@ function CardGrid() {
         </Grid>
       </Grid>
 
-      {/* Grid containing the cards */}
       <Grid container spacing={2}>
         {cardGridData.cards.slice(0, 6).map((card, index) => (
           <Grid
@@ -56,78 +53,91 @@ function CardGrid() {
           >
             <Card
               sx={{
-                backgroundColor: theme.palette.customColor.main, // Use custom color here
+                backgroundColor: theme.palette.customColor.main,
                 padding: 2,
                 height: '479px',
                 borderRadius: 0,
-                position: 'relative', // Allow absolute positioning of text
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                textAlign: 'center', // Center text horizontally
+                position: 'relative',
+                overflow: 'hidden',
               }}
+              className={styles.card}
             >
-              {/* CardMedia (image) */}
               <CardMedia
                 component="img"
-                height="100%" // Make the image take the full height of the card
-                image={card.backgroundAsset.url}
-                alt={card.backgroundAsset.alt}
+                height="100%"
+                image={card.backgroundAsset?.url || 'path/to/fallback-image.jpg'}
+                alt={card.backgroundAsset?.alt || 'Fallback Image'}
                 sx={{
-                  objectFit: 'cover', // Ensure the image covers the entire space without distortion
-                  width: '100%', // Ensure the image takes up full width
+                  objectFit: 'cover',
+                  width: '100%',
                 }}
               />
 
-              {/* Create a second container inside the card to hold text and button */}
               <CardContent
                 sx={{
-                  position: 'absolute', // Position the text on top of the image
-                  top: '50%', // Center the text vertically
-                  left: '50%', // Center the text horizontally
-                  transform: 'translate(-50%, -50%)', // Use translate to truly center the text
-                  padding: 0,
-                  zIndex: 10, // Make sure the text is on top of the image
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
                   display: 'flex',
-                  flexDirection: 'column',
                   justifyContent: 'center',
-                  alignItems: 'center', // Center everything inside this container
-                  gap: '20px', // Spacing between the text and button
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  padding: 0,
+                  zIndex: 10,
                 }}
               >
-                {/* Render subtitle and title in uppercase */}
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontSize: '16px',
-                    fontWeight: 'normal',
-                    textTransform: 'uppercase',
-                    marginBottom: '10px',
-                    textAlign: 'center', // Center the text horizontally
-                    color: 'black', // Set text color to black
-                  }}
-                >
-                  {card.subtitle}
-                </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 'bold',
-                    textTransform: 'uppercase',
-                    textAlign: 'center', // Center the text horizontally
-                    color: 'black', // Set text color to black
-                  }}
-                >
-                  {card.title}
-                </Typography>
+                <div className={styles.textContainer}>
+                  {/* Title and Subtitle Container */}
+                  <div className={styles.titleSubtitleContainer}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        fontSize: '16px',
+                        fontWeight: 'normal',
+                        textTransform: 'uppercase',
+                        color: 'black',
+                      }}
+                    >
+                      {card.subtitle}
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        fontWeight: 'bold',
+                        textTransform: 'uppercase',
+                        color: 'black',
+                      }}
+                    >
+                      {card.title}
+                    </Typography>
+                  </div>
 
-                {/* Conditionally render ButtonDetail only for the first card */}
-                {index === 0 && (
-                  <ButtonDetail
-                    text={card.cta?.text || 'Explore More'} // Pass dynamic text from JSON
-                    url={card.cta?.url || '/article'} // Pass dynamic URL from JSON
-                  />
-                )}
+                  {/* Description Container */}
+                  <div className={styles.descriptionContainer}>
+                    <Typography variant="body2" sx={{ color: 'black' }}>
+                      {card.description}
+                    </Typography>
+                  </div>
+
+                  {/* Button Container */}
+                  <div className={styles.buttonContainer}>
+                    {card.cta?.url && card.cta?.text && (
+                      <ButtonDetail
+                        url={card.cta.url}
+                        text={card.cta.text}
+                        sx={{
+                          width: '225px',
+                          height: '60px',
+                          backgroundColor: theme.palette.background.default,
+                          border: '1px solid black',
+                          color: 'black',
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </Grid>
@@ -135,6 +145,6 @@ function CardGrid() {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default CardGrid;
