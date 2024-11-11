@@ -6,7 +6,7 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import ResponsiveDivider120 from 'src/components/ResponsiveDivider120';
 import ResponsiveDivider80 from 'src/components/ResponsiveDivider80';
-import styles from 'src/app/article/page.module.css'; // If you need specific styles for the article page
+import styles from './page.module.css'; // If you need specific styles for the article page
 
 const ArticlePage = () => {
   return (
