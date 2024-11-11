@@ -1,5 +1,21 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Ensure consistent box-sizing */
+}
+
+/* Remove default margin and padding */
 body {
-    margin: 0; /* Remove the default margin */
-    padding: 0; /* Remove default padding */
-    box-sizing: border-box; /* Ensure consistent box-sizing */
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply left and right padding for medium and small devices */
+@media (max-width: 960px) {
+  /* Apply padding to all elements inside body, excluding header and footer */
+  body > *:not(header):not(footer) {
+    padding-left: 10px;  /* Apply 10px left padding */
+    padding-right: 10px; /* Apply 10px right padding */
   }
+}
