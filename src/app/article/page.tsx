@@ -9,6 +9,7 @@ import ResponsiveDivider120 from 'src/components/ResponsiveDivider120';
 import ResponsiveDivider80 from 'src/components/ResponsiveDivider80';
 import ResponsiveDivider60 from 'src/components/ResponsiveDivider60';
 import styles from './page.module.css'; // If you need specific styles for the article page
+import HeroBanner from './components/HeroBanner';
 
 const ArticlePage = () => {
   return (
@@ -18,7 +19,7 @@ const ArticlePage = () => {
       <ResponsiveDivider80 />
       <BackButton />
       <ResponsiveDivider60 />
-
+      <HeroBanner/>
       {/* Optional: Add a divider or other elements for spacing */}
       <ResponsiveDivider80 />
 
