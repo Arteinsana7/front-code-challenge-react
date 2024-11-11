@@ -7,9 +7,10 @@ import BackButton from './components/BackButton';
 import Footer from 'src/components/Footer';
 import ResponsiveDivider120 from 'src/components/ResponsiveDivider120';
 import ResponsiveDivider80 from 'src/components/ResponsiveDivider80';
-import ResponsiveDivider60 from 'src/components/ResponsiveDivider60';
+
 import styles from './page.module.css'; // If you need specific styles for the article page
 import HeroBanner from './components/HeroBanner';
+import DateAuthor from './components/DateAuthor';
 
 const ArticlePage = () => {
   return (
@@ -18,10 +19,14 @@ const ArticlePage = () => {
       <Header />
       <ResponsiveDivider80 />
       <BackButton />
-      <ResponsiveDivider60 />
+      <ResponsiveDivider80 />
       <HeroBanner/>
       {/* Optional: Add a divider or other elements for spacing */}
       <ResponsiveDivider80 />
+      <ResponsiveDivider80 />
+      <DateAuthor />
+     
+     
 
       {/* Article Content */}
       <Box sx={{ padding: 3 }}>
