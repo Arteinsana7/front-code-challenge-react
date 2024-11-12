@@ -6,12 +6,13 @@
   justify-content: center;
   align-items: center;
   padding: 20px; /* Padding around the main card */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  /* No transform or hover effect on the card itself anymore */
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  /* No hover effect on the card */
+  box-shadow: none;
 }
 
 .textContainer {
@@ -24,7 +25,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* Padding inside the container */
+  padding: 20px; /* Padding inside the container */
   transition: transform 0.3s ease;
   width: 100%; /* Ensure the container takes the full width of the card */
 }
@@ -53,6 +54,19 @@
   padding: 20px; /* Padding around the description */
   font-size: 14px; /* Adjust text size for the description */
   word-wrap: break-word; /* Ensure description text wraps within container */
+  
+  /* Prevent text from overflowing and truncate if too long */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis when text is cut off */
+  
+  /* For standard support and vendor prefixing */
+  display: -webkit-box; /* Webkit-based box model */
+  -webkit-line-clamp: 3; /* Limit text to 3 lines with the Webkit prefix */
+  -webkit-box-orient: vertical; /* Webkit-specific box orientation */
+  
+  /* Standard property for line clamping */
+  line-clamp: 3; /* Ensure text is clamped to 3 lines */
+  box-orient: vertical; /* Standard box orientation */
 }
 
 .buttonContainer {
@@ -67,4 +81,10 @@
 .card:hover .buttonContainer {
   opacity: 1;
   transform: translateY(0); /* Bring up smoothly */
+}
+
+/* Hover effect only on the button */
+.buttonDetail:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Apply the hover effect only on the button */
 }
