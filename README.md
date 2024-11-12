@@ -2,17 +2,28 @@
 
 This is the Valtech Front challenge forked By Eliana Yepez, seeking an internship with your amazing company !
 
-## Getting Started
+## For starting the project run npm run dev
 
-1 - fork the repository so you can work with it
+This repository in a reproduction from the pages of the Fron end challenge.
 
-2 - install all the dependencies `npm install`
+1 - Run npm i for installing all dependencies used on this project.
 
-3 - run the development server
+2 - run the development server
 
 ```bash
 npm run dev
 ```
+
+3 - You could run test with the script npm test for unit tests with jest.
+
+```bash
+npm test
+```
+
+## Design tools :
+
+1 - Material MUI for all the layouts icons, grid structures and responsive design.
+2 - 'use client'; React Server Components (RSC) architecture
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
