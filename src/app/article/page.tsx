@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Typography, Box } from '@mui/material';
+// import { Typography, Box } from '@mui/material';
 import Header from 'src/components/Header';
 import BackButton from './components/BackButton';
 import Footer from 'src/components/Footer';
-import ResponsiveDivider120 from 'src/components/ResponsiveDivider120';
+// import ResponsiveDivider120 from 'src/components/ResponsiveDivider120';
 import ResponsiveDivider80 from 'src/components/ResponsiveDivider80';
-
 import styles from './page.module.css'; // If you need specific styles for the article page
 import HeroBanner from './components/HeroBanner';
 import DateAuthor from './components/DateAuthor';
+import HeadingParagraph from './components/HeadingParagraph';
 
 const ArticlePage = () => {
   return (
@@ -23,24 +23,12 @@ const ArticlePage = () => {
       <HeroBanner/>
       {/* Optional: Add a divider or other elements for spacing */}
       <ResponsiveDivider80 />
-      <ResponsiveDivider80 />
       <DateAuthor />
-     
-     
-
-      {/* Article Content */}
-      <Box sx={{ padding: 3 }}>
-        <Typography variant="h3" sx={{ fontWeight: 'bold', marginBottom: 2 }}>
-          Article Title
-        </Typography>
-        <Typography variant="body1">
-          This is the content of the article. You can add text, images, or any
-          other content here. Feel free to customize it according to your needs.
-        </Typography>
-      </Box>
+      <ResponsiveDivider80 />
+      <HeadingParagraph />
 
       {/* Optional: Add a divider after the content */}
-      <ResponsiveDivider120 />
+      <ResponsiveDivider80 />
 
       {/* Include the Footer component */}
       <Footer />
