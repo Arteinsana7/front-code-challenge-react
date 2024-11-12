@@ -7,10 +7,10 @@ const ResponsiveDivider60 = () => {
       sx={{
         width: '100%',
         height: {
-          xs: '30px', // Height for extra small screens
-          sm: '40px', // Height for small screens
-          md: '50px', // Height for medium screens
-          lg: '60px', // Height for large screens and up
+          xs: '30px', //  extra small screens
+          sm: '40px', //  small screens
+          md: '50px', //  medium screens
+          lg: '60px', //  large screens and up
         },
       }}
     />

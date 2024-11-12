@@ -5,7 +5,7 @@ import Link from 'next/link';
 interface ButtonDetailProps {
   text: string;
   url: string;
-  ariaLabel?: string; // Add ariaLabel as an optional prop
+  ariaLabel?: string; // optional prop
   sx?: SxProps<Theme>; // Keep sx prop for additional styling
 }
 
@@ -22,19 +22,22 @@ const ButtonDetail: React.FC<ButtonDetailProps> = ({ text, url, ariaLabel, sx })
           height: '50px', // Button height
           backgroundColor: theme.palette.background.default, // Default background color
           border: `1px solid ${theme.palette.text.primary}`, // Border color from theme
-          borderRadius: '0px',
+          borderRadius: '1px', // Slight rounding of borders for smoother edges
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           textTransform: 'none', // Prevent text from being capitalized
           textDecoration: 'none', // Remove underline from Link
+          boxShadow: 'none', 
           '&:hover': {
             backgroundColor: theme.palette.primary.main, // Background color on hover
             borderColor: theme.palette.primary.main, // Border color on hover
           },
-          // Remove the blue underline when the button is a link
+          '&:focus': {
+            outline: 'none', // Remove default focus outline
+          },
           '& a': {
-            textDecoration: 'none', // Remove underline from the <a> tag
+            textDecoration: 'none',
             color: 'inherit', // Ensure the link text color matches the parent color
           },
           ...sx, // Apply the sx prop passed from the parent component
@@ -43,7 +46,7 @@ const ButtonDetail: React.FC<ButtonDetailProps> = ({ text, url, ariaLabel, sx })
         <Typography
           sx={{
             color: theme.palette.text.primary, // Set text color to match theme
-            fontSize: '16px', // Adjust font size as needed
+            fontSize: '16px', // Font size as needed
             fontWeight: 'bold', // Bold text
           }}
         >
