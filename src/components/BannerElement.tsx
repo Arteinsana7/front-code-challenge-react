@@ -1,15 +1,17 @@
 'use client';
 
 import React from 'react';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import data from '../data/index.json'; // Import from the data file index.json
+import Card from './Card'; // Import your CardComponent
 
 const BannerElement = () => {
   const theme = useTheme();
 
   // Extract the title from the Hero data
   const heroData = data.content[0]; // Access Hero data for the title
+  const backgroundAsset = heroData?.backgroundAsset; // Use optional chaining here to avoid undefined
 
   // Check if cards exist, otherwise fallback to a default description
   const veniceCard = data.content[1]?.cards?.[0]; // Access Venice card data for description
@@ -30,7 +32,10 @@ const BannerElement = () => {
         alignItems: 'center', // Center content horizontally
         margin: '0 auto', // Center horizontally within the viewport
         backgroundColor: theme.palette.background.default,
-        // Only adjust left and right margins, no top and bottom margins
+        backgroundImage: backgroundAsset ? `url(${backgroundAsset.url})` : 'none', // Use a fallback if backgroundAsset is undefined
+        backgroundSize: 'cover', // Ensure background image covers the container
+        backgroundPosition: 'center',
+        position: 'relative', // Make the parent container relative so the card can be positioned absolutely within it
         marginLeft: {
           xs: '24px', // Smaller margin on extra small screens
           sm: '48px', // Medium margin on small screens
@@ -89,7 +94,7 @@ const BannerElement = () => {
           {heroData.title}
         </Typography>
 
-        {/* Description text from venice card */}
+        {/* Description text from Venice card */}
         <Typography
           variant="body1"
           sx={{
@@ -108,6 +113,18 @@ const BannerElement = () => {
           {description}
         </Typography>
       </Container>
+
+      {/* CardComponent positioned in the middle of the left half */}
+      <Box
+        sx={{
+          position: 'absolute',
+          left: '10%', // Position it exactly in the middle of the left half
+          top: '50%', // Position it vertically in the middle
+          transform: 'translateY(-50%)', // Adjust for perfect vertical centering
+        }}
+      >
+        <Card />
+      </Box>
     </Container>
   );
 };
