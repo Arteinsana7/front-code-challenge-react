@@ -29,9 +29,9 @@ const ArticlePage = () => {
       <BackButton />
       <ResponsiveDivider80 />
       <HeroBanner />
-      <ResponsiveDivider80 />
+     
       <DateAuthor />
-      <ResponsiveDivider80 />
+    
       <HeadingParagraph />
       <ResponsiveDivider80 />
       <SubHeadingParagraph />
@@ -39,7 +39,9 @@ const ArticlePage = () => {
       
       {/* Pass the extracted carouselItems to the Carousel component */}
       <Carousel items={carouselItems} />
-      
+      <ResponsiveDivider80 />
+      <SubHeadingParagraph />
+      <ResponsiveDivider80 />
       {/* Include the Footer component */}
       <Footer />
     </main>
