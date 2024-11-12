@@ -17,31 +17,33 @@ const DateAuthor: React.FC = () => {
     <Box
       sx={{
         display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' }, // Stack elements vertically on small screens, horizontally on larger ones
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '1196px', // Main the main container width to 1196px
-        height: '200px', // Main container height to 200px
+        width: '100%', // Full width
+        maxWidth: '1196px', // Keep the max-width consistent
         margin: 'auto',
-        position: 'relative',
-        padding: '0 20px', //padding for small screens
+        padding: '0 20px', // Padding for smaller screens
+        boxSizing: 'border-box', // Ensure padding doesn't affect width calculation
       }}
     >
       {/* Left container for the publishing date */}
       <Box
         sx={{
-          width: '250px', // Adjusted width for the date section
-          height: '100%', // Ensure it takes up the full container height
+          width: { xs: '100%', sm: '250px' }, // Full width on small screens, 250px on larger ones
+          height: '100%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start', // Align the text to the left
-          fontStyle: 'italic', // Italic font style
+          justifyContent: 'flex-start',
+          fontStyle: 'italic',
           fontSize: {
-            xs: '16px', //  font size on small screens
-            sm: '18px', //  font size on medium screens
-            md: '20px', //  font size on medium devices
-            lg: '22px', //  font size on large devices
-            xl: '24px', // 2 font size for extra-large screens
+            xs: '14px', // Adjusted font size for small screens
+            sm: '16px',
+            md: '18px',
+            lg: '20px',
+            xl: '22px',
           },
+          marginBottom: { xs: '10px', sm: 0 }, // Margin between the date and author on small screens
         }}
       >
         <Typography variant="body2">
@@ -52,18 +54,18 @@ const DateAuthor: React.FC = () => {
       {/* Right container for the author */}
       <Box
         sx={{
-          width: '250px', // Adjusted width for the author section
-          height: '100%', //  it takes up the full container height
+          width: { xs: '100%', sm: '250px' }, // Full width on small screens, 250px on larger ones
+          height: '100%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-end', // Align the text to the right
-          fontStyle: 'italic', // Italic font style
+          justifyContent: 'flex-end',
+          fontStyle: 'italic',
           fontSize: {
-            xs: '16px', 
-            sm: '18px', //  medium screens
-            md: '20px', //  medium devices
-            lg: '22px', //  large devices
-            xl: '24px', //  extra-large screens
+            xs: '14px', // Adjusted font size for small screens
+            sm: '16px',
+            md: '18px',
+            lg: '20px',
+            xl: '22px',
           },
         }}
       >

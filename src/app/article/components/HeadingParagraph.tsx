@@ -15,53 +15,37 @@ const HeadingParagraph: React.FC = () => {
   const truncateAtWord = (text: string, word: string) => {
     const index = text.indexOf(word);
     if (index !== -1) {
-      return text.slice(0, index + word.length);  // Include the word "tristique"
+      return text.slice(0, index + word.length); // Include the word "tristique"
     }
-    return text;  // If "tristique" is not found, return the full text
+    return text; // If "tristique" is not found, return the full text
   };
 
   return (
     <Box
       sx={{
-        width: '1196px',  // Set the width to 1196px
-        height: '300px',  // Set the height to 300px
-        margin: 'auto',    // Center the container
-        padding: '20px',   // Add padding inside the container
-        overflowY: 'hidden',  // Hide overflow content
+        width: { xs: '100%', sm: '90%', md: '80%', lg: '1196px' }, // Responsive width
+        maxWidth: '100%', // Ensure it doesn't overflow the viewport
+        height: { xs: 'auto', md: '300px' }, // Responsive height (auto on smaller screens)
+        margin: 'auto', // Center the container
+        padding: { xs: '10px', sm: '20px' }, // Responsive padding
+        overflowY: 'hidden', // Hide overflow content
       }}
     >
       {paragraphs.map((paragraph, index) => (
-        <Box key={index} sx={{ marginBottom: '16px' }}>
-          {/* Highlighted Paragraph Text */}
-          {paragraph.highlight ? (
-            <Typography
-              variant="body1"
-              component="div"  
-              sx={{
-                fontSize: '32px',  
-                fontWeight: 'normal', 
-                lineHeight: '1.5',  
-                color: 'black',  
-              }}
-              dangerouslySetInnerHTML={{
-                __html: truncateAtWord(paragraph.text || '', 'tristique'),  // Truncate text at "tristique"
-              }}
-            />
-          ) : (
-            <Typography
-              variant="body1"
-              component="div"  // Ensures the component is a div for the content
-              sx={{
-                fontSize: '32px',  // Set the font size
-                fontWeight: 'normal',  
-                lineHeight: '1.5',  //  Letter spacing
-                color: 'black',  // Set text color to black
-              }}
-              dangerouslySetInnerHTML={{
-                __html: truncateAtWord(paragraph.text || '', 'tristique'),  // Truncate text at "tristique"
-              }}
-            />
-          )}
+        <Box key={index} sx={{ marginBottom: { xs: '12px', sm: '16px' } }}>
+          <Typography
+            variant="body1"
+            component="div"
+            sx={{
+              fontSize: { xs: '18px', sm: '24px', md: '28px', lg: '32px' }, // Responsive font size
+              fontWeight: 'normal',
+              lineHeight: { xs: '1.4', sm: '1.5' }, // Adjust line height for readability
+              color: 'black', // Text color
+            }}
+            dangerouslySetInnerHTML={{
+              __html: truncateAtWord(paragraph.text || '', 'tristique'), // Truncate text at "tristique"
+            }}
+          />
         </Box>
       ))}
     </Box>
