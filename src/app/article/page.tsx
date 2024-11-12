@@ -11,7 +11,7 @@ import styles from './page.module.css'; // If you need specific styles for the a
 import HeroBanner from './components/HeroBanner';
 import DateAuthor from './components/DateAuthor';
 import HeadingParagraph from './components/HeadingParagraph';
-
+import SubHeadingParagraph from './components/SubHeadingParagraph';
 const ArticlePage = () => {
   return (
     <main className={styles.main}>
@@ -26,10 +26,10 @@ const ArticlePage = () => {
       <DateAuthor />
       <ResponsiveDivider80 />
       <HeadingParagraph />
-
       {/* Optional: Add a divider after the content */}
       <ResponsiveDivider80 />
-
+      <SubHeadingParagraph />
+      <ResponsiveDivider80 />
       {/* Include the Footer component */}
       <Footer />
     </main>
