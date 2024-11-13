@@ -9,58 +9,74 @@ import Card from './Card'; // Import your CardComponent
 const BannerElement = () => {
   const theme = useTheme();
 
-  // Extract the title and description
-  const heroData = data.content[0];
-  const veniceCard = data.content[1]?.cards?.[0];
+  // Extract the title from the Hero data
+  const heroData = data.content[0]; // Access Hero data for the title
+  const backgroundAsset = heroData?.backgroundAsset; // Use optional chaining here to avoid undefined
+
+  // Check if cards exist, otherwise fallback to a default description
+  const veniceCard = data.content[1]?.cards?.[0]; // Access Venice card data for description
+
+  // If there's no Venice card data, fallback to a default message
   const description = veniceCard?.description || "Default description text.";
 
   return (
     <Container
       sx={{
         width: '100%',
-        maxWidth: '1196px',
-        height: '480px',
+        maxWidth: '1196px', // This keeps the fixed width for the outer container
+        height: '480px', // This keeps the fixed height for the outer container
         padding: theme.spacing(2),
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        margin: '0 auto',
+        alignItems: 'center', // Center content horizontally
+        margin: '0 auto', // Center horizontally within the viewport
         backgroundColor: theme.palette.background.default,
-        backgroundImage: heroData?.backgroundAsset ? `url(${heroData.backgroundAsset.url})` : 'none',
-        backgroundSize: 'cover',
+        backgroundImage: backgroundAsset ? `url(${backgroundAsset.url})` : 'none', // Use a fallback if backgroundAsset is undefined
+        backgroundSize: 'cover', // Ensure background image covers the container
         backgroundPosition: 'center',
-        position: 'relative',
+        position: 'relative', // Make the parent container relative so the card can be positioned absolutely within it
+        marginLeft: {
+          xs: '24px', // Smaller margin on extra small screens
+          sm: '48px', // Medium margin on small screens
+          md: '80px', // Larger margin on medium screens
+          lg: '120px', // 120px margin on large screens
+        },
+        marginRight: {
+          xs: '24px', // Smaller margin on extra small screens
+          sm: '48px', // Medium margin on small screens
+          md: '80px', // Larger margin on medium screens
+          lg: '120px', // 120px margin on large screens
+        },
       }}
     >
-      {/* Card component with conditional sizing and positioning */}
-      <Box
-        sx={{
-          position: 'absolute',
-          left: '10%', // Position for larger screens
-          top: '50%',  // Vertically center the card
-          transform: 'translateY(-50%)', // Center it perfectly vertically
-          zIndex: 1, // Ensure card appears below the text
-        }}
-      >
-        <Card />
-      </Box>
-
-      {/* Inner container for text */}
+      {/* Inner Container to hold title and description */}
       <Container
         sx={{
-          position: 'absolute',
-          top: '50%', // Center text vertically
-          left: '50%', // Center text horizontally
-          transform: 'translate(-50%, -50%)', // Center text
-          width: '100%',
-          maxWidth: '477px',
+          width: '100%', // Full width of the container on smaller screens
+          maxWidth: '477px', // Max width on larger screens
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center', // Align text to the center
-          textAlign: 'center',
-          zIndex: 2, // Ensure text appears on top of the card
+          alignItems: 'center', // Align both title and description to the center for small screens
+          paddingLeft: {
+            xs: '0px', // Less padding on smaller screens
+            sm: '0px', // Small padding on small screens
+            md: '200px', // Medium padding on medium screens
+            lg: '600px', // Full padding on large screens
+          },
+          marginRight: {
+            xs: '5vw', // 5% of the viewport width on extra small devices
+            sm: '4vw', // 4% on small devices
+            md: '3vw', // 3% on medium devices
+            lg: '2vw', // 2% on large devices
+          },
+          order: {
+            xs: -1,  // Move the text above the card only on small screens
+          },
+          zIndex: {
+            xs: 2,  // Ensure text is on top for small screens
+          },
         }}
       >
         {/* Title */}
@@ -69,7 +85,10 @@ const BannerElement = () => {
           sx={{
             fontWeight: 'bold',
             color: theme.palette.text.primary,
-            marginBottom: theme.spacing(1),
+            marginBottom: {
+              xs: theme.spacing(2), // Space below text on small screens
+              sm: theme.spacing(1), // Adjust space for larger screens
+            },
             fontFamily: "'Arial', sans-serif",
             fontSize: {
               xs: '24px',
@@ -78,12 +97,18 @@ const BannerElement = () => {
               lg: '36px',
             },
             lineHeight: '120%',
+            textAlign: {
+              xs: 'center', // Center text only on small screens
+              sm: 'center', // Center text only on small screens
+              md: 'right',  // Keep text aligned to the right on medium and larger screens
+              lg: 'right',  // Keep text aligned to the right on large screens
+            },
           }}
         >
           {heroData.title}
         </Typography>
 
-        {/* Description */}
+        {/* Description text from Venice card */}
         <Typography
           variant="body1"
           sx={{
@@ -96,11 +121,29 @@ const BannerElement = () => {
             color: theme.palette.text.secondary,
             fontFamily: "'Arial', sans-serif",
             lineHeight: '140%',
+            textAlign: {
+              xs: 'center', // Center text only on small screens
+              sm: 'center', // Center text only on small screens
+              md: 'right',  // Keep text aligned to the right on medium and larger screens
+              lg: 'right',  // Keep text aligned to the right on large screens
+            },
           }}
         >
           {description}
         </Typography>
       </Container>
+
+      {/* CardComponent positioned in the middle of the left half */}
+      <Box
+        sx={{
+          position: 'absolute',
+          left: '10%', // Position it exactly in the middle of the left half
+          top: '50%', // Position it vertically in the middle
+          transform: 'translateY(-50%)', // Adjust for perfect vertical centering
+        }}
+      >
+        <Card />
+      </Box>
     </Container>
   );
 };
