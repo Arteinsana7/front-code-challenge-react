@@ -3,7 +3,7 @@
 import React from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import data from '../data/index.json'; // Import from the data file index.json
+import data from '../../data/index.json'; // Import from the data file index.json
 import Card from './Card'; // Import your CardComponent
 
 const BannerElement = () => {

@@ -1,6 +1,6 @@
 // src/components/BannerElement.test.tsx
 import { render, screen } from '@testing-library/react';
-import BannerElement from './BannerElement';  // Import the real component
+import BannerElement from '../Banner/BannerElement';  // Import the real component
 
 describe('BannerElement Component', () => {
   it('renders the title and description correctly', () => {

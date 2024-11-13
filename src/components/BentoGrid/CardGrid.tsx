@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Typography, Grid, CardMedia, CardContent, useTheme } from '@mui/material';
-import data from '../data/index.json'; // Import JSON data
+import data from '../../data/index.json'; // Import JSON data
 import ButtonDetail from './ButtonDetail'; // Assuming ButtonDetail is in the same folder
-import styles from 'src/app/CardGrid.module.css'; // Import the CSS module
+import styles from 'src/components/BentoGrid/CardGrid.module.css'; // Import the CSS module
 
 const CardGrid: React.FC = () => {
   const theme = useTheme();

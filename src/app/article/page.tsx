@@ -5,7 +5,7 @@ import React from 'react';
 import Header from 'src/components/Header';
 import BackButton from './components/BackButton';
 import Footer from 'src/components/Footer';
-import ResponsiveDivider80 from 'src/components/ResponsiveDivider80';
+import ResponsiveDivider80 from 'src/components/Spacings/ResponsiveDivider80';
 import styles from './page.module.css'; 
 import HeroBanner from './components/HeroBanner';
 import DateAuthor from './components/DateAuthor';
