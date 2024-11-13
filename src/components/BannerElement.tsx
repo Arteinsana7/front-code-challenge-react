@@ -9,68 +9,58 @@ import Card from './Card'; // Import your CardComponent
 const BannerElement = () => {
   const theme = useTheme();
 
-  // Extract the title from the Hero data
-  const heroData = data.content[0]; // Access Hero data for the title
-  const backgroundAsset = heroData?.backgroundAsset; // Use optional chaining here to avoid undefined
-
-  // Check if cards exist, otherwise fallback to a default description
-  const veniceCard = data.content[1]?.cards?.[0]; // Access Venice card data for description
-
-  // If there's no Venice card data, fallback to a default message
+  // Extract the title and description
+  const heroData = data.content[0];
+  const veniceCard = data.content[1]?.cards?.[0];
   const description = veniceCard?.description || "Default description text.";
 
   return (
     <Container
       sx={{
         width: '100%',
-        maxWidth: '1196px', // This keeps the fixed width for the outer container
-        height: '480px', // This keeps the fixed height for the outer container
+        maxWidth: '1196px',
+        height: '480px',
         padding: theme.spacing(2),
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center', // Center content horizontally
-        margin: '0 auto', // Center horizontally within the viewport
+        alignItems: 'center',
+        margin: '0 auto',
         backgroundColor: theme.palette.background.default,
-        backgroundImage: backgroundAsset ? `url(${backgroundAsset.url})` : 'none', // Use a fallback if backgroundAsset is undefined
-        backgroundSize: 'cover', // Ensure background image covers the container
+        backgroundImage: heroData?.backgroundAsset ? `url(${heroData.backgroundAsset.url})` : 'none',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
-        position: 'relative', // Make the parent container relative so the card can be positioned absolutely within it
-        marginLeft: {
-          xs: '24px', // Smaller margin on extra small screens
-          sm: '48px', // Medium margin on small screens
-          md: '80px', // Larger margin on medium screens
-          lg: '120px', // 120px margin on large screens
-        },
-        marginRight: {
-          xs: '24px', // Smaller margin on extra small screens
-          sm: '48px', // Medium margin on small screens
-          md: '80px', // Larger margin on medium screens
-          lg: '120px', // 120px margin on large screens
-        },
+        position: 'relative',
       }}
     >
-      {/* Inner Container to hold title and description */}
+      {/* Card component with conditional sizing and positioning */}
+      <Box
+        sx={{
+          position: 'absolute',
+          left: '10%', // Position for larger screens
+          top: '50%',  // Vertically center the card
+          transform: 'translateY(-50%)', // Center it perfectly vertically
+          zIndex: 1, // Ensure card appears below the text
+        }}
+      >
+        <Card />
+      </Box>
+
+      {/* Inner container for text */}
       <Container
         sx={{
-          width: '100%', // Full width of the container on smaller screens
-          maxWidth: '477px', // Max width on larger screens
+          position: 'absolute',
+          top: '50%', // Center text vertically
+          left: '50%', // Center text horizontally
+          transform: 'translate(-50%, -50%)', // Center text
+          width: '100%',
+          maxWidth: '477px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'flex-end', // Align both title and description to the right
-          paddingLeft: {
-            xs: '24px', // Less padding on smaller screens
-            sm: '48px', // Small padding on small screens
-            md: '200px', // Medium padding on medium screens
-            lg: '600px', // Full padding on large screens
-          },
-          marginRight: {
-            xs: '5vw', // 5% of the viewport width on extra small devices
-            sm: '4vw', // 4% on small devices
-            md: '3vw', // 3% on medium devices
-            lg: '2vw', // 2% on large devices
-          },
+          alignItems: 'center', // Align text to the center
+          textAlign: 'center',
+          zIndex: 2, // Ensure text appears on top of the card
         }}
       >
         {/* Title */}
@@ -88,13 +78,12 @@ const BannerElement = () => {
               lg: '36px',
             },
             lineHeight: '120%',
-            textAlign: 'right', // Align the text to the right
           }}
         >
           {heroData.title}
         </Typography>
 
-        {/* Description text from Venice card */}
+        {/* Description */}
         <Typography
           variant="body1"
           sx={{
@@ -107,24 +96,11 @@ const BannerElement = () => {
             color: theme.palette.text.secondary,
             fontFamily: "'Arial', sans-serif",
             lineHeight: '140%',
-            textAlign: 'right', // Align the text to the right
           }}
         >
           {description}
         </Typography>
       </Container>
-
-      {/* CardComponent positioned in the middle of the left half */}
-      <Box
-        sx={{
-          position: 'absolute',
-          left: '10%', // Position it exactly in the middle of the left half
-          top: '50%', // Position it vertically in the middle
-          transform: 'translateY(-50%)', // Adjust for perfect vertical centering
-        }}
-      >
-        <Card />
-      </Box>
     </Container>
   );
 };
