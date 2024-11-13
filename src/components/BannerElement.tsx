@@ -58,7 +58,12 @@ const BannerElement = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center', // Align both title and description to the center for small screens
+          alignItems: {
+            xs: 'center', // Center text on small screens
+            sm: 'center', // Center text on small screens
+            md: 'flex-end', // Right align on medium screens
+            lg: 'flex-end', // Right align on large screens
+          },
           paddingLeft: {
             xs: '0px', // Less padding on smaller screens
             sm: '0px', // Small padding on small screens
@@ -100,8 +105,8 @@ const BannerElement = () => {
             textAlign: {
               xs: 'center', // Center text only on small screens
               sm: 'center', // Center text only on small screens
-              md: 'right',  // Keep text aligned to the right on medium and larger screens
-              lg: 'right',  // Keep text aligned to the right on large screens
+              md: 'right',  // Right align text on medium screens
+              lg: 'right',  // Right align text on large screens
             },
           }}
         >
@@ -124,8 +129,8 @@ const BannerElement = () => {
             textAlign: {
               xs: 'center', // Center text only on small screens
               sm: 'center', // Center text only on small screens
-              md: 'right',  // Keep text aligned to the right on medium and larger screens
-              lg: 'right',  // Keep text aligned to the right on large screens
+              md: 'right',  // Right align text on medium screens
+              lg: 'right',  // Right align text on large screens
             },
           }}
         >
