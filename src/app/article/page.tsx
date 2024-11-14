@@ -23,7 +23,6 @@ const ArticlePage = () => {
 
   return (
     <main className={styles.main}>
-      {/* Include the Header component */}
       <Header />
       <ResponsiveDivider80 />
       <BackButton />
@@ -42,7 +41,6 @@ const ArticlePage = () => {
       <ResponsiveDivider80 />
       <SubHeadingParagraph />
       <ResponsiveDivider80 />
-      {/* Include the Footer component */}
       <Footer />
     </main>
   );

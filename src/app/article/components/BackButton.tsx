@@ -1,58 +1,77 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/navigation'; // Next.js navigation hook
 
 const BackButton: React.FC = () => {
   const router = useRouter();
+  const theme = useTheme();
 
   const handleBack = () => {
-    // If there's no previous history, go to the Home page directly
     if (window.history.length > 1) {
-      router.back(); // Goes back to the previous page if there is one
+      router.back();
     } else {
-      router.push('/'); // Fallback to Home page if no history
+      router.push('/');
     }
   };
 
   return (
     <Button
-      startIcon={<ArrowBackIcon />} // Arrow icon on the left of the text
+      startIcon={<ArrowBackIcon />}
       onClick={handleBack}
-      variant="text"  // No background, text only
-      color="inherit" // Inherit the color, so no background is set
+      variant="text"
+      color="inherit"
       sx={{
-        position: 'absolute',           // Absolute positioning for more control
-        top: '10%',                     // Positioning based on percentage of screen height
-        left: '10%',                    // Move the button more to the left (adjusted from 50% to 10%)
-        transform: 'translateX(0)',     // No need to center horizontally, so reset translateX
-        width: 'auto',                  // Automatically adjust width based on content
-        height: 'auto',                 // Adjust height based on content and padding
-        padding: '12px 24px',           // Add padding for the button to make it more clickable
-        textTransform: 'uppercase',     // Text in all capitals
-        display: 'flex',                // Flexbox for layout of icon and text
-        justifyContent: 'center',       // Align icon and text together
-        alignItems: 'center',           // Align vertically
-        minWidth: 'auto',               // Prevent stretching
-        fontWeight: 'bold',             // Make the text bold
-        gap: '8px',                     // Small gap between icon and text
-        fontSize: '1.1rem',             // Increase font size slightly for better readability
+        position: 'absolute',
+        top: '15%', // Default position
+        left: '17%', // Default position
+        padding: '12px 24px',
+        textTransform: 'uppercase',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        fontSize: '1.1rem',
+        gap: '8px',
         '& .MuiButton-startIcon': {
-          marginRight: '0',             // Remove additional margin between icon and text
+          marginRight: '0',
         },
-        '@media (max-width: 768px)': {  // For mobile and smaller screens
-          top: '12%',                   // Adjust top position for small screens
-          padding: '10px 20px',         // Adjust padding for smaller screens
-          fontSize: '1rem',             // Slightly smaller font on small screens
-          left: '8%',                   // Move the button a little more to the left on small screens
+        // For medium devices (general tablets)
+        [theme.breakpoints.down('md')]: {
+          top: '10%',
+          left: '3%',
+          padding: '10px 20px',
+          fontSize: '1rem',
         },
-        '@media (max-width: 480px)': {  // For very small screens
-          top: '15%',                   // Adjust further on very small screens
-          padding: '8px 16px',          // Adjust padding for very small screens
-          fontSize: '0.9rem',           // Smaller font size for better visibility on very small screens
-          left: '5%',                   // Move the button more to the left on very small screens
+        // For larger tablets (e.g., iPad Pro)
+        [theme.breakpoints.between('md', 'lg')]: {
+          top: '12%',
+          left: '5%',
+          padding: '10px 22px',
+          fontSize: '1.05rem',
+        },
+        // For small devices (e.g., smartphones)
+        [theme.breakpoints.down('sm')]: {
+          top: '10%',
+          left: '5%',
+          padding: '8px 16px',
+          fontSize: '0.9rem',
+        },
+        // For very small devices (e.g., iPhone SE)
+        [theme.breakpoints.down('xs')]: {
+          top: '15%', // For better spacing
+          left: '3%', // Closer to the edge
+          padding: '6px 10px', // Smaller padding for better fit
+          fontSize: '0.8rem', // Smaller font size for narrow screens
+        },
+        // For extremely small screens (custom case)
+        '@media (max-width: 320px)': {
+          top: '18%', // Adjust further for very narrow screens
+          left: '2%', // Slightly reduce left margin
+          padding: '4px 8px', // Minimal padding for best fit
+          fontSize: '0.75rem', // Reduce font size further
         },
       }}
     >
