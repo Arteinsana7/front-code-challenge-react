@@ -26,7 +26,7 @@ const BackButton: React.FC = () => {
       sx={{
         position: 'absolute',
         top: '15%', // Default position
-        left: '17%', // Default position
+        left: '17%', 
         padding: '12px 24px',
         textTransform: 'uppercase',
         display: 'flex',
@@ -59,9 +59,9 @@ const BackButton: React.FC = () => {
           padding: '8px 16px',
           fontSize: '0.9rem',
         },
-        // For very small devices (e.g., iPhone SE)
+        
         [theme.breakpoints.down('xs')]: {
-          top: '15%', // For better spacing
+          top: '15%', 
           left: '3%', // Closer to the edge
           padding: '6px 10px', // Smaller padding for better fit
           fontSize: '0.8rem', // Smaller font size for narrow screens
@@ -69,9 +69,9 @@ const BackButton: React.FC = () => {
         // For extremely small screens (custom case)
         '@media (max-width: 320px)': {
           top: '18%', // Adjust further for very narrow screens
-          left: '2%', // Slightly reduce left margin
-          padding: '4px 8px', // Minimal padding for best fit
-          fontSize: '0.75rem', // Reduce font size further
+          left: '2%', 
+          padding: '4px 8px', 
+          fontSize: '0.75rem', 
         },
       }}
     >

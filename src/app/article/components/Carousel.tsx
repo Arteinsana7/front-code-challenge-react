@@ -21,7 +21,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     setFadeOut(true);
     setTimeout(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? items.length - 1 : prevIndex - 1
+        prevIndex === 0 ? items.length - 1 : prevIndex - 1,
       );
       setFadeOut(false);
     }, 500);
@@ -31,7 +31,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     setFadeOut(true);
     setTimeout(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === items.length - 1 ? 0 : prevIndex + 1
+        prevIndex === items.length - 1 ? 0 : prevIndex + 1,
       );
       setFadeOut(false);
     }, 500);

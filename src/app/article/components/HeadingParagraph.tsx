@@ -5,49 +5,59 @@ import data from 'src/data/article.json'; // Import the article data
 
 const HeadingParagraph: React.FC = () => {
   // Find all PARAGRAPH items in the article content
-  const paragraphs = data.content.filter((section) => section.type === 'PARAGRAPH');
+  const paragraphs = data.content.filter(
+    (section) => section.type === 'PARAGRAPH',
+  );
 
   if (paragraphs.length === 0) {
-    return null; 
+    return null;
   }
 
-  // Function to truncate text at the word "tristique"
-  const truncateAtWord = (text: string, word: string) => {
-    const index = text.indexOf(word);
-    if (index !== -1) {
-      return text.slice(0, index + word.length); // Include the word "tristique"
-    }
-    return text; // If "tristique" is not found, return the full text
+  // We will always show the first paragraph
+  const paragraphToShow = paragraphs[0]; 
+
+  // Function to remove HTML tags (like <p> and others) from the text content
+  const stripHtmlTags = (text: string) => {
+    const doc = new DOMParser().parseFromString(text, 'text/html');
+    return doc.body.textContent || ''; // Extract the plain text from HTML
   };
+
+  // Strip HTML tags from the paragraph text
+  const plainText = stripHtmlTags(paragraphToShow.text || '');
 
   return (
     <Box
       sx={{
-        width: { xs: '100%', sm: '90%', md: '80%', lg: '1196px' }, // Responsive width
-        maxWidth: '100%', // Ensure it doesn't overflow the viewport
-        height: { xs: 'auto', md: '300px' }, // Responsive height (auto on smaller screens)
+        width: { xs: '100%', sm: '90%', md: '80%', lg: '60%' }, 
+        maxWidth: '100%', 
         margin: 'auto', // Center the container
-        padding: { xs: '10px', sm: '20px' }, // Responsive padding
+        padding: { xs: '20px', sm: '20px', md: '20px' }, 
         overflowY: 'hidden', // Hide overflow content
       }}
     >
-      {paragraphs.map((paragraph, index) => (
-        <Box key={index} sx={{ marginBottom: { xs: '12px', sm: '16px' } }}>
-          <Typography
-            variant="body1"
-            component="div"
-            sx={{
-              fontSize: { xs: '18px', sm: '24px', md: '28px', lg: '32px' }, // Responsive font size
-              fontWeight: 'normal',
-              lineHeight: { xs: '1.4', sm: '1.5' }, // Adjust line height for readability
-              color: 'black', // Text color
-            }}
-            dangerouslySetInnerHTML={{
-              __html: truncateAtWord(paragraph.text || '', 'tristique'), // Truncate text at "tristique"
-            }}
-          />
-        </Box>
-      ))}
+      <Box sx={{ marginBottom: '0px' }}>
+        <Typography
+          variant="body1"
+          component="div"
+          sx={{
+            fontSize: {
+              xs: '20px', 
+              sm: '24px', 
+              md: '28px',
+              lg: '40px',
+            }, // Responsive font size
+            fontWeight: 500, 
+            lineHeight: { xs: '1.4', sm: '1.5' },
+            color: 'black', 
+            display: '-webkit-box',
+            WebkitLineClamp: 3, 
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
+          {plainText}
+        </Typography>
+      </Box>
     </Box>
   );
 };

@@ -1,11 +1,14 @@
 'use client';
+
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import data from 'src/data/article.json'; // Import the article data
 
 const DateAuthor: React.FC = () => {
   // Find the HERO_ARTICLE section in the article content
-  const article = data.content.find((section) => section.type === 'HERO_ARTICLE');
+  const article = data.content.find(
+    (section) => section.type === 'HERO_ARTICLE',
+  );
 
   if (!article) {
     return null; // Return nothing if no article found
@@ -17,24 +20,24 @@ const DateAuthor: React.FC = () => {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' }, // Stack elements vertically on small screens, horizontally on larger ones
+        flexDirection: 'row', // Always horizontal alignment
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '100%', // Full width
-        maxWidth: '1196px', // Keep the max-width consistent
+        width: '100%',
+        maxWidth: '1196px',
         margin: 'auto',
-        padding: '0 20px', // Padding for smaller screens
-        boxSizing: 'border-box', // Ensure padding doesn't affect width calculation
+        padding: '0 20px', // Add global padding to the container
+        boxSizing: 'border-box',
       }}
     >
       {/* Left container for the publishing date */}
       <Box
         sx={{
-          width: { xs: '100%', sm: '250px' }, // Full width on small screens, 250px on larger ones
+          width: { xs: '45%', sm: '250px' }, // On small screens, use 45% width for the date, 250px on larger ones
           height: '100%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: 'flex-start', // Align text to the left
           fontStyle: 'italic',
           fontSize: {
             xs: '14px', // Adjusted font size for small screens
@@ -43,35 +46,32 @@ const DateAuthor: React.FC = () => {
             lg: '20px',
             xl: '22px',
           },
-          marginBottom: { xs: '10px', sm: 0 }, // Margin between the date and author on small screens
+          paddingLeft: '20px', // Add padding from the left for the date
         }}
       >
-        <Typography variant="body2">
-          {publishingDate}
-        </Typography>
+        <Typography variant="body2">{publishingDate}</Typography>
       </Box>
 
       {/* Right container for the author */}
       <Box
         sx={{
-          width: { xs: '100%', sm: '250px' }, // Full width on small screens, 250px on larger ones
+          width: { xs: '45%', sm: '250px' }, // On small screens, use 45% width for the author, 250px on larger ones
           height: '100%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-end',
+          justifyContent: 'flex-end', 
           fontStyle: 'italic',
           fontSize: {
-            xs: '14px', // Adjusted font size for small screens
+            xs: '14px', 
             sm: '16px',
             md: '18px',
             lg: '20px',
             xl: '22px',
           },
+          paddingRight: '20px', 
         }}
       >
-        <Typography variant="body2">
-          {author}
-        </Typography>
+        <Typography variant="body2">{author}</Typography>
       </Box>
     </Box>
   );

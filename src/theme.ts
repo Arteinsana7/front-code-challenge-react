@@ -1,7 +1,6 @@
-// theme.ts
 import { createTheme } from '@mui/material/styles';
 
-// Create the theme with the custom color
+// Create the theme with the custom color and breakpoints
 const theme = createTheme({
   palette: {
     primary: {
@@ -50,6 +49,16 @@ const theme = createTheme({
     },
   },
   spacing: (factor: number) => `${factor * 8}px`,
+  breakpoints: {
+    values: {
+      xs: 0, // Extra small devices (phones)
+      sm: 600, // Small devices (landscape phones)
+      tablet: 768, // Custom tablet breakpoint (iPad Mini, iPad Air)
+      md: 960, // Medium devices (tablets, some small desktops)
+      lg: 1200, // Large devices (desktops)
+      xl: 1536, // Extra large devices (large desktops)
+    },
+  },
 });
 
 export default theme;

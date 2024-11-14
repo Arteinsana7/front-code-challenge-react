@@ -10,19 +10,17 @@ import Footer from '../components/Footer';
 // import ButtonDetail from '../components/ButtonDetail';
 
 export default function Home() {
-
   return (
     <main className={styles.main}>
       <Header />
       <ResponsiveDivider120 />
-      <BannerElement/>
+      <BannerElement />
       <ResponsiveDivider120 />
       <CardGrid />
       <ResponsiveDivider120 />
       {/* <ButtonDetail text={''} url={''} /> */}
 
       <Footer />
-
     </main>
   );
 }

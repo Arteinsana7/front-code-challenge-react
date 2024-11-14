@@ -11,8 +11,8 @@ const Header = () => {
         width: '100%', // Full width of the parent container
         height: { xs: '60px', sm: '80px', md: '100px' }, // Responsive height
         backgroundColor: '#FF5959', // Banner color
-        margin: 0, 
-        padding: 0, 
+        margin: 0,
+        padding: 0,
       }}
     >
       {/* Logo */}
@@ -24,10 +24,10 @@ const Header = () => {
         }}
       >
         <Image
-          src="/images/logo.svg" 
+          src="/images/logo.svg"
           alt="Logo"
-          width={181.44} 
-          height={40.01} 
+          width={181.44}
+          height={40.01}
         />
       </Box>
     </Box>

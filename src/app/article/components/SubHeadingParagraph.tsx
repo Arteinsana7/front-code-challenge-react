@@ -1,12 +1,14 @@
+'use client';
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import data from 'src/data/article.json'; // Import the article data
 
 const SubHeadingParagraph: React.FC = () => {
   // Extract the first PARAGRAPH item from the article content
-  const paragraph = data.content.find((section) => section.type === 'PARAGRAPH');
+  const paragraph = data.content.find(
+    (section) => section.type === 'PARAGRAPH',
+  );
 
-  // If no paragraph is found, return nothing
   if (!paragraph) {
     return null;
   }
@@ -14,27 +16,37 @@ const SubHeadingParagraph: React.FC = () => {
   return (
     <Box
       sx={{
-        width: '945px',  // Set the width to 945px
-        maxWidth: '100%', // Make sure it's responsive
-        height: 'auto',  // Allow the height to adjust based on content
-        margin: 'auto',  // Center the container
-        padding: '16px', // Add padding inside the container
+        width: '945px',
+        maxWidth: '100%',
+        height: 'auto',
+        margin: '0',
+        padding: { 
+          xs: '16px 20px', // More padding on small devices
+          sm: '16px 32px', // Adjust padding for sm and larger
+          md: '16px 24px', // Reduced padding on medium devices
+          lg: '6px 2px', // Slightly less padding for large devices
+        },
         overflow: 'hidden', // Hide overflow content
       }}
     >
-      <Box sx={{ marginBottom: '8px' }}>
+      <Box sx={{ marginBottom: '0' }}>
         <Typography
           variant="body1"
           sx={{
-            fontSize: '23px',   // Set the font size to 23px
-            fontWeight: 100,    // Set the font weight to 'light' or 100 (thinner font)
-            color: 'black',     // Black text color
-            lineHeight: '1.5',   // Set line height for better readability
-            whiteSpace: 'normal', // Allow text to wrap normally
-            overflow: 'hidden',  // Ensure no overflow
+            fontSize: { 
+              xs: '18px',  // Smaller font on xs
+              sm: '20px',  // Adjust font size for sm
+              md: '22px',  // Medium size font for md
+              lg: '25px',  // Larger font for lg and up
+            },
+            fontWeight: 100,
+            color: 'black',
+            lineHeight: '1.5',
+            whiteSpace: 'normal',
+            overflow: 'hidden',
           }}
           dangerouslySetInnerHTML={{
-            __html: paragraph.text || '',  // Set the paragraph text
+            __html: paragraph.text || '', // Set the paragraph text
           }}
         />
       </Box>

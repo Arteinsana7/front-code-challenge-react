@@ -38,7 +38,8 @@
   margin-bottom: 15px; /* Space between title/subtitle and description */
 }
 
-.title, .subtitle {
+.title,
+.subtitle {
   font-size: 18px; /* Reduce font size for better fitting */
   word-wrap: break-word; /* Ensure text wraps inside container */
   max-width: 100%; /* Ensure text does not overflow */
@@ -48,22 +49,24 @@
   width: 100%; /* Adapt to the card's width */
   max-width: 100%; /* Ensure it fills the width */
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   transform: translateY(5px); /* Initial offset for animation */
   margin-bottom: 10px; /* Space between description and button */
   padding: 20px; /* Padding around the description */
   font-size: 14px; /* Adjust text size for the description */
   word-wrap: break-word; /* Ensure description text wraps within container */
-  
+
   /* Prevent text from overflowing and truncate if too long */
   overflow: hidden; /* Hide overflowing text */
   text-overflow: ellipsis; /* Add ellipsis when text is cut off */
-  
+
   /* For standard support and vendor prefixing */
   display: -webkit-box; /* Webkit-based box model */
   -webkit-line-clamp: 3; /* Limit text to 3 lines with the Webkit prefix */
   -webkit-box-orient: vertical; /* Webkit-specific box orientation */
-  
+
   /* Standard property for line clamping */
   line-clamp: 3; /* Ensure text is clamped to 3 lines */
   box-orient: vertical; /* Standard box orientation */
@@ -71,7 +74,9 @@
 
 .buttonContainer {
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   transform: translateY(5px); /* Initial offset for animation */
   margin-top: 10px; /* Space between description and button */
   padding: 5px; /* 5px padding around the button */
